@@ -1,0 +1,17 @@
+<div class="task-container well well-sm">
+	<h2>
+		<a href="#" ui-sref="taskEdit({taskId: task.id})">
+			{{task.name}}
+		</a>
+		<!--{{task.name}}
+		<small>
+			<a href="#" ui-sref="taskEdit({taskId: task.id})">
+				[edit]
+			</a>
+		</small>-->
+	</h2>
+	<!-- if task description length longer than 100 characters, limit to 100 and append ellipsis -->
+	<p ng-if="task.description.length > 100">{{task.description | limitTo: 100}}...</p>
+	<!-- if task description length less than 100 characters, show it -->
+	<p ng-if="task.description.length <= 100">{{task.description}}</p>
+</div>

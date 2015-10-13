@@ -1,0 +1,64 @@
+<div class="row">
+	<div class="col-sm-12">
+		<div class="alert alert-warning" role="alert" ng-if="vm.tasksDueToday.length > 0">
+			<i class="glyphicon glyphicon-warning-sign"></i>
+			The following tasks are due today:
+			<ul>
+				<li ng-repeat="taskName in vm.tasksDueToday">
+					{{taskName}}
+				</li>
+			</ul>
+		</div>
+		<div class="alert alert-success" role="alert" ng-if="vm.numberOfUncompletedTasks == 0">
+			<strong>Woohoo!</strong> You have nothing to do!
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-12 col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading text-center">
+				TODO <span class="badge">{{(vm.tasks|filter: {status: 'TODO'}).length}}</span>
+			</div>
+			<div class="panel-body">
+				<ul class="todo-list list-unstyled">
+					<li ng-repeat="task in vm.tasks | filter: {status: 'TODO'}">
+						<task-item></task-item>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading text-center">
+				DOING <span class="badge">{{(vm.tasks|filter: {status: 'DOING'}).length}}</span>
+			</div>
+			<div class="panel-body">
+				<ul class="todo-list list-unstyled">
+					<li ng-repeat="task in vm.tasks | filter: {status: 'DOING'}">
+						<div class="task-container">
+							<task-item></task-item>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="col-xs-12 col-sm-4">
+		<div class="panel panel-primary">
+			<div class="panel-heading text-center">
+				DONE <span class="badge">{{(vm.tasks|filter: {status: 'DONE'}).length}}</span>
+			</div>
+			<div class="panel-body">
+				<ul class="todo-list list-unstyled">
+					<li ng-repeat="task in vm.tasks | filter: {status: 'DONE'}">
+						<div class="task-container">
+							<task-item></task-item>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

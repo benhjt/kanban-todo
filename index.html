@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<title>Kanban TODO</title>
+		<!-- library css -->
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+		<!-- app specific css-->
+		<link rel="stylesheet" type="text/css" href="index.css" />
+	</head>
+
+	<body ng-app="kanbanTodo" ng-cloak>
+		<!-- common nav bar -->
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<a class="navbar-brand" ui-sref="taskList">
+					Todo list
+				</a>
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="sr-only">Toggle Navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="navbar-collapse collapse">
+					<ul class="nav navbar-nav">
+						<li>
+							<a ui-sref="taskList">
+								Task List
+							</a>
+						</li>
+						<li>
+							<a ui-sref="taskEdit({taskId:0})">
+								<i class="glyphicon glyphicon-plus"></i> Add Task
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div class="container">
+			<!-- content added here -->
+			<div ui-view></div>
+		</div>
+
+		<!-- libraries -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.js"></script>
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.13/angular-ui-router.min.js"></script>
+		<script type="text/javascript" src="js/angular-resource.js"></script>
+		<script type="text/javascript" src="js/angular-mocks.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
+
+		<!-- app -->
+		<script type="text/javascript" src="app.js"></script>
+		<!-- controllers -->
+		<script type="text/javascript" src="views/taskListView/taskListCtrl.js"></script>
+		<script type="text/javascript" src="views/taskEditView/taskEditCtrl.js"></script>
+		<!-- directives -->
+		<script type="text/javascript" src="views/taskListView/taskDirective.js"></script>
+		<!-- common -->
+		<script type="text/javascript" src="common/commonServices.js"></script>
+		<!-- mock -->
+		<script type="text/javascript" src="common/backendMock.js"></script>
+	</body>
+</html>

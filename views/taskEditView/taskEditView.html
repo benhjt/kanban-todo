@@ -1,0 +1,94 @@
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">Edit task</h3>
+	</div>
+	<div class="panel-body">
+		<form class="form-horizontal" name="taskForm" novalidate>
+			<div class="form-group" ng-class="{'has-error': taskForm.inp_taskName.$invalid && taskForm.inp_taskName.$dirty}">
+				<label for="inp_taskName" class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="inp_taskName" name="inp_taskName" placeholder="Name" ng-model="vm.task.name" ng-minlength="1" required>
+				</div>
+				<span class="help-block has-error">
+					<span ng-show="taskForm.inp_taskName.$error.required">
+						Task name is required.
+					</span>
+					<span ng-show="taskForm.inp_taskName.$error.minlength">
+						Task name is required.
+					</span>
+				</span>
+			</div>
+			<div class="form-group" ng-class="{'has-error': taskForm.inp_description.$invalid && taskForm.inp_description.$dirty}">
+				<label for="inp_description" class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-6">
+					<textarea class="form-control" rows="3" id="inp_description" name="inp_description" placeholder="Description..." ng-model="vm.task.description" ng-minlength="1" required></textarea>
+				</div>
+				<span class="help-block has-error">
+					<span ng-show="taskForm.inp_description.$error.required">
+						Task description is required.
+					</span>
+					<span ng-show="taskForm.inp_description.$error.minlength">
+						Task description is required.
+					</span>
+				</span>
+			</div>
+			<div class="form-group">
+				<label for="inp_date" class="col-sm-2 control-label">Due date</label>
+				<div class="col-sm-6">
+					<div class="input-group">
+						<input type="text" class="form-control" id="inp_date" datepicker-popup="dd/MM/yyyy" is-open="vm.isDatePickerOpen" ng-model="vm.task.dueDate" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" ng-click="vm.openDatePicker($event)">
+								<i class="glyphicon glyphicon-calendar"/>
+							</button>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inp_tags" class="col-sm-2 control-label">Search tags</label>
+				<div class="col-sm-6">
+					<input type="text" class="form-control" id="inp_tags" name="inp_tags" placeholder="Task search keywords separated by commas" ng-model="vm.newTags" />
+				</div>
+				<div class="col-sm-4">
+					<button type="button" class="btn btn-primary" title="Add the specified tags" ng-click="vm.addTagsToTask(vm.newTags)">
+						Add
+					</button>
+				</div>
+			</div>
+			<div class="form-group" ng-show="vm.task.tags.length > 0">
+				<div class="col-sm-6 col-sm-offset-2">
+					<span ng-repeat="tag in vm.task.tags | orderBy">
+						<button class="btn btn-info" style="font-size: smaller; margin-bottom:12px" ng-click="vm.removeTagFromTask($index)">
+							{{tag}}
+							<span class="glyphicon glyphicon-remove"></span>
+						</button>
+					</span>
+				</div>
+			</div>
+			<div class="form-group" ng-class="{'has-error': taskForm.inp_status.$invalid && taskForm.inp_status.$dirty}">
+				<label for="inp_status" class="col-sm-2 control-label">Status</label>
+				<div class="col-sm-6">
+					<select class="form-control" ng-model="vm.task.status" id="inp_status" name="inp_status" required>
+						<option value="">Please select...</option>
+						<option value="TODO">Todo</option>
+						<option value="DOING">Doing</option>
+						<option value="DONE">Done</option>
+					</select>
+				</div>
+				<span class="help-block has-error">
+					<span ng-show="taskForm.inp_status.$error.required">
+						Task status is required.
+					</span>
+				</span>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<a class="btn btn-primary" ng-disabled="taskForm.$invalid" ng-click="vm.saveTask(taskForm.$valid)">Save</a>
+					<button type="button" class="btn btn-default" ng-click="vm.cancelAndReturn()">Cancel</button>
+					<button type="button" class="btn btn-danger" ng-show="vm.task.id != 0" ng-click="vm.deleteTask()">Delete</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
